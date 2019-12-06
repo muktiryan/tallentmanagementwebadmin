@@ -1,1 +1,205 @@
-<p>applicants works!</p>
+<div class="content content-fixed backgroundbiasa">
+        <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+          <div class="d-sm-flex align-items-center justify-content-between mg-b-10 mg-lg-b-10">
+            <div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                  <!-- <li class="breadcrumb-item"><a href="#">Jobs & Projects</a></li> -->
+                  <li class="breadcrumb-item active" aria-current="page">Applicants</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div class="row row-xs">
+            <div class="col-12">
+              <div class="card card-body align-items-start">
+                <div class="d-md-flex justify-content-between">
+                  <div class="media" style="padding: 15px 10px 5px;">
+                        <ul class="nav navbar-menu">
+                                <ul class="nav navbar-menu">
+                                        <li class="nav-item active">
+                                            <a href="#" class="nav-link active"> Unprocessed ({{sortaction.up}})</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link"> Shortlist ({{sortaction.sl}})</a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a href="#" class="nav-link"> Interview ({{sortaction.in}})</a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a href="#" class="nav-link"> Not Suitable ({{sortaction.ns}})</a>
+                                        </li>    
+                                        <li class="nav-item">
+                                                <a href="#" class="nav-link"> Blacklist ({{sortaction.bl}})</a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a href="#" class="nav-link"> Suitable ({{sortaction.st}})</a>
+                                        </li>
+                                </ul>
+                        </ul>
+                  </div><!-- media -->
+                  <!-- <div class="d-flex flex-column flex-sm-row mg-t-20 mg-md-t-0">
+                    <button class="btn btn-sm btn-white btn-uppercase pd-x-15 mg-t-5 mg-sm-t-0  mg-sm-l-5"><i data-feather="percent" class="mg-r-5"></i> Comparation</button>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- col -->
+          </div><!-- row -->
+    <!---TABLE JOBS-->
+    <div class="row row-xs">
+        <div class="col-md-6 col-xs-12">
+                <h5 style="padding: 10px;">Unprocessed Applicant</h5>
+        </div>
+        <div class="col-xs-6" style="text-align: end;">
+            <div class="dropdown" style="padding: 10px;padding-top: 15px;">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" [(ngModel)]="masterSelected" class="custom-control-input" id="customCheck1" value="m1" (change)="checkUncheckAll()">
+                    <label class="custom-control-label" for="customCheck1">Select Applicants</label>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-xs-6" style="text-align: end;">
+            <div class="dropdown" style="padding: 10px;">
+                    <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-right:20px;">
+                      Move To
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Unprocessed</a>
+                      <a class="dropdown-item" href="#">Shortlist</a>
+                      <a class="dropdown-item" href="#">Interview</a>
+                      <a class="dropdown-item" href="#">Not Suitable</a>
+                      <a class="dropdown-item" href="#">Blacklist</a>
+                      <a class="dropdown-item" href="#">Suitable</a>
+                    </div>
+                  </div>
+        </div>
+        <div class="col-md-3" style="text-align: end;">
+                <div class="dropdown" style="padding: 10px;">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sort By
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Applicant Name</a>
+                          <a class="dropdown-item" href="#">Last Update CV</a>
+                          <a class="dropdown-item" href="#">Last Active</a>
+                        </div>
+                </div>
+        </div>
+    </div>
+    <div class="row row-xs">
+      <div class="col-md-3">
+          <div class="card card-body">
+              
+                <strong style="color: #5C73AE;">Filter Applications</strong><p></p>
+                <div data-label="Example" class="df-example demo-forms">
+                    <div class="input-group mg-y-5">
+                        <span style="font-size: 11px;color:#5C73AE"><strong>Job Title</strong></span>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Filter Job Title</option>
+                        <option *ngFor="let jobTitle of jobTitleItems" value="jobTitle.value">{{jobTitle.display}}</option>
+                    </select>
+                    
+                    <div class="input-group mg-y-5">
+                        <span style="font-size: 11px;color:#5C73AE"><strong>Skills</strong></span>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Filter Skills</option>
+                        <option *ngFor="let skills of skillsitems" value="skills.value">{{skills.display}}</option>
+                    </select>
+                    
+                    <div class="input-group mg-y-5">
+                        <span style="font-size: 11px;color:#5C73AE"><strong>Industry</strong></span>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Filter Industry</option>
+                        <option *ngFor="let industriy of industriyitems" value="industriy.value">{{industriy.display}}</option>
+                    </select>
+                    
+                    <div class="input-group mg-y-5">
+                        <span style="font-size: 11px;color:#5C73AE"><strong>Job Level</strong></span>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Filter Job Level</option>
+                        <<option *ngFor="let joblevel of joblevelitems" value="joblevel.value">{{joblevel.display}}</option>
+                    </select>                   
+                    <div class="input-group mg-y-5">
+                        <span style="font-size: 11px;color:#5C73AE"><strong>Location</strong></span>
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Filter Location</option>
+                        <option *ngFor="let location of locationitems" value="location.value">{{location.display}}</option>
+                      </select>
+                </div>
+               
+            </div>
+      </div>
+      <div class="col-md-9">
+          <p style="margin-top: 0.7rem;margin-bottom:0.05rem;margin-left:20px;color:rgb(1, 104, 250)">{{dataMessage}}</p>
+          <div class="row mg-t-25 mg-sm-2 justify-content-between mg-b-5 mg-lg-b-5 pd-y-10" style="border: 1px solid rgba(72, 94, 144, 0.16); border-radius: 4px;" *ngFor="let candidate of pageOfItems">
+              <div class="col-sm-8">
+                  <!-- <h5 style="color: #0168fa" class="thinkisclicked">Job Title</h5> -->
+                  <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="idx{{candidate.id}}" [(ngModel)]="candidate.isSelected"  value="{{candidate.id}}" >
+                      <label class="custom-control-label thinkisclicked" style="color: #5C73AE;font-size:16px;font-weight:600" for="idx{{candidate.id}}">{{candidate.fullname}}</label>
+                  </div>
+                  <p class="ppadding-b-0" style="padding-top:7px;font-size:12px;font-weight:300">{{candidate.applyfor}}</p>
+                  
+                  <p style="padding-top:5px;font-size:12px;font-weight:500;color:green">Availibility : Open for Job Opportunity</p>
+              </div>
+             
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-6" style="color: #5C73AE;font-size:11px;font-weight:600">
+                          Applied
+                        </div>
+                        <div class="col-sm-6" style="text-align:right;font-size:11px;font-weight:300">
+                            {{candidate.applieddate | date :  "d MMM y"}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7" style="color: #5C73AE;font-size:11px;font-weight:600">
+                          Last update CV
+                        </div>
+                        <div class="col-sm-5" style="text-align:right;font-size:11px;font-weight:300">
+                            {{candidate.lastupdate | date :  "d MMM y"}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="color: #5C73AE;font-size:11px;font-weight:600">
+                          Last active
+                        </div>
+                        <div class="col-sm-6" style="text-align:right;font-size:11px;font-weight:300">
+                            {{candidate.lastactive | date :  "d MMM y"}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 pd-y-10 isumrms" (click)="onOptionClick($event,1234,1)">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="24" height="24" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></g><rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" /></svg>
+                        </div>
+                        <div class="col-sm-3 pd-y-10 isumrms"  (click)="onOptionClick($event,1234,2)">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="24" height="24" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></g><rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" /></svg>
+                        </div>
+                        <div class="col-sm-3 pd-y-10 isumrms"  (click)="onOptionClick($event,1234,3)">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="24" height="24" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></g></svg>
+                        </div>
+                        <div class="col-sm-3 pd-y-10 isumrms"  (click)="onOptionClick($event,1234,3)">
+                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="24" height="24" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10H3"/><path d="M21 6H3"/><path d="M21 14H3"/><path d="M21 18H3"/></g></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+      </div>
+    </div>
+    
+              
+    
+    
+    
+        </div><!-- container -->
+      </div>
+      <script>
+        feather.replace()
+      </script>
+    

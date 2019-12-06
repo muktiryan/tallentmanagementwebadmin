@@ -1,20 +1,80 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here testing for NGX-CHIPS: </h2>
-<tag-input [ngModel]="['@item']"
-           [onlyFromAutocomplete]="true">
-    <tag-input-dropdown [showDropdownIfEmpty]="true"
-                        [autocompleteItems]="['iTem1', 'item2', 'item3']">
-        <ng-template let-item="item" let-index="index">
-            {{ index }}: {{ item.display }}
-        </ng-template>
-    </tag-input-dropdown>
-</tag-input>
+<header class="navbar navbar-header navbar-header-fixed" style='display: flex;flex-flow: row;'>
+  <a href="" id="mainMenuOpen" class="burger-menu">
+    <i data-feather="menu"></i>
+  </a>
+  <div class="navbar-brand" style="padding-left: 0px;">
+    <a href="" class="df-logo">
+      <img src="/assets/assets/img/phincon/talentslogo.png" alt="no logo" class="imglogoAtas" />
+    </a>
+  </div><!-- navbar-brand -->
+  <div id="navbarMenu" class="navbar-menu-wrapper">
+    <div class="navbar-menu-header">
+      <!-- <a href="" class="df-logo">dash<span>forge</span></a> -->
+      <a id="mainMenuClose" href="">
+        <i data-feather="x"></i>
+      </a>
+    </div><!-- navbar-menu-header -->
+    <ul class="nav navbar-menu">
+      <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Main Navigation</li>
+      <li id="jobprojects" class="nav-item with-sub" routerLinkActive="active">
+        <a href="" class="nav-link">
+          <i data-feather="pie-chart"></i>
+          Jobs & Projects
+        </a>
+        <ul class="navbar-menu-sub">
+          <li class="nav-sub-item">
+            <a routerLink="jobs_project/post" class="nav-sub-link" (click)="toggleSub('jobprojects')">
+              <i data-feather="bar-chart-2"></i>
+              Job Post
+            </a>
+          </li>
+          <!-- <li class="nav-sub-item"><a href="jobs_project/post" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Job Post</a></li> -->
+          <li class="nav-sub-item"><a href="#" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Projetcts</a></li>
+          <li class="nav-sub-item"><a href="#" class="nav-sub-link"><i data-feather="bar-chart-2"></i>Project
+              History</a></li>
+        </ul>
+      </li>
+      <li class="nav-item" routerLinkActive="active"><a routerLink="applicants" class="nav-link"><i
+            data-feather="box"></i> Applicants</a></li>
+      <!-- <li class="nav-item"  routerLinkActive="active"><a href="applicants" class="nav-link"><i data-feather="box"></i> Applicants</a></li> -->
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="uploadresume" class="nav-link">
+          <i data-feather="box"></i> Upload Resume
+        </a>
+      </li>
+
+    </ul>
+  </div><!-- navbar-menu-wrapper -->
+  <div class="navbar-right" *ngIf="profileComponent.loggedin">
 
 
+    <!-- dropdown -->
+    <div class="dropdown dropdown-profile">
+
+      <!-- <span href="https://themeforest.net/item/azia-responsive-bootstrap-4-dashboard-template/22983790" class="btn btn-buy"><i data-feather="shopping-bag"></i> <span>Buy Now</span></a> -->
+
+
+      <a href="" class="dropdown-link" data-toggle="dropdown" data-display="static">
+        <div class="avatar avatar-sm"><img [src]="profileComponent.avatar" class="rounded-circle" alt="">
+        </div>
+      </a><!-- dropdown-link -->
+      <div class="dropdown-menu dropdown-menu-right tx-13">
+        <div class="avatar avatar-lg mg-b-15"><img [src]="profileComponent.avatar" class="rounded-circle"
+            alt=""></div>
+        <h6 class="tx-semibold mg-b-15">{{profileComponent.name}}</h6>
+        <!-- <p class="mg-b-25 tx-12 tx-color-03">Administrator</p> -->
+        <a href="" class="dropdown-item" routerLink="adminprofile"><i data-feather="edit-3"></i> Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a href="" class="dropdown-item"><i data-feather="users"></i> Resource Manager</a>
+        <a href="" class="dropdown-item" routerLink="useradmin"><i data-feather="life-buoy"></i> Users Administrator</a>
+        <a href="" class="dropdown-item" routerLink="utilsettings"><i data-feather="settings"></i>Utilities Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="javascript:void(0)" class="dropdown-item" (click)="openDialog()"><i data-feather="log-out"></i>Sign
+          Out</a>
+      </div><!-- dropdown-menu -->
+    </div><!-- dropdown -->
+  </div><!-- navbar-right -->
+
+</header><!-- navbar -->
 <router-outlet></router-outlet>

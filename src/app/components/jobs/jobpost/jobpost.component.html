@@ -1,1 +1,98 @@
-<p>jobpost works!</p>
+<div class="content content-fixed backgroundbiasa">
+    <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+      <div class="d-sm-flex align-items-center justify-content-between mg-b-10 mg-lg-b-10">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+              <li class="breadcrumb-item"><a href="#">Jobs & Projects</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Jobs</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row row-xs">
+        <div class="col-12">
+          <div class="card card-body">
+            <div class="d-md-flex align-items-center justify-content-between">
+              <div class="media align-sm-items-center">
+                <h4 class="mg-b-0 tx-spacing--1">Job Post</h4>
+              </div><!-- media -->
+              <div class="d-flex flex-column flex-sm-row mg-t-20 mg-md-t-0">
+                <button class="btn btn-sm btn-white btn-uppercase pd-x-15 mg-t-5 mg-sm-t-0 mg-sm-l-5" (click)="onCreateNewClick($event)"><i data-feather="share-2" class="mg-r-5"></i> Create Job</button>
+                <button class="btn btn-sm btn-white btn-uppercase pd-x-15 mg-t-5 mg-sm-t-0  mg-sm-l-5"><i data-feather="layers" class="mg-r-5"></i> Job History</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- col -->
+      </div><!-- row -->
+<!---TABLE JOBS-->
+<p style="margin-top: 0.7rem;margin-bottom:0.05rem;margin-left:20px;color:rgb(1, 104, 250)">{{dataMessage}}</p>
+    <div class="row mg-t-25 mg-sm-2 justify-content-between mg-b-5 mg-lg-b-5 pd-y-10" style="border: 1px solid rgba(72, 94, 144, 0.16)" *ngFor="let job of pageOfItems">
+    <div class="col-sm-3">
+        <!-- {job:{title:'GIS Specialist',creator:'Yazmin Z',dateposted:'2019-08-12',expireposted:'2019-12-29'},status:{unprocess:20,shortlist:6,interview:2,notsuitable:15,blacklist:1}} -->
+        
+        <!-- <h5 style="color: #0168fa" class="thinkisclicked">{{job.job.title}}</h5> -->
+        <h5 style="color: #0168fa" class="thinkisclicked">{{job.jobtitle}}</h5>
+        <p class="ppadding-b-0">Created By {{job.createdBy}}.</p>
+        <p class="ppadding-b-0">Posted on {{job.CreatedAt | date:'dd MMM yyyy'}}</p>
+        <p class="ppadding-b-0">Deadline of Application</p>
+        <p class="ppadding-b-0">{{job.deadLineDate | date:'dd MMM yyyy'}}</p><p></p>
+        <div id="bottomexpire" style="padding-top: 30px">{{job.deadLineDate | date:'dd MMM yyyy'}}</div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm pd-y-10 sumrms" (click)="onDashboardSummClick($event,1234,0)">
+              <!-- <div class = "gfg">{{job.status.unprocess}}</div>  -->
+              <div class = "gfg">{{job.unprocessed}}</div> 
+              <div id="bottomgeeks">Unprocessed</div>
+            </div>
+            <div class="col-sm pd-y-10 sumrms"  (click)="onDashboardSummClick($event,1234,1)">
+                <!-- <div class = "gfg">{{job.status.shortlist}}</div>  -->
+                <div class = "gfg">{{job.shortlisted}}</div> 
+                <div id="bottomgeeks">Shortlist</div>
+            </div>
+            <div class="col-sm pd-y-10 sumrms"  (click)="onDashboardSummClick($event,1234,2)">
+                <!-- <div class = "gfg">{{job.status.interview}}</div>  -->
+                <div class = "gfg">{{job.interviewed}}</div>
+                <div id="bottomgeeks">Interview</div>
+            </div>
+            <div class="col-sm pd-y-10 sumrms"  (click)="onDashboardSummClick($event,1234,3)">
+                <!-- <div class = "gfg">{{job.status.notsuitable}}</div>  -->
+                <div class = "gfg">{{job.notsuitable}}</div> 
+                <div id="bottomgeeks">Not Suitable</div>
+            </div>
+            <div class="col-sm pd-y-10 sumrms"  (click)="onDashboardSummClick($event,1234,3)">
+              <!-- <div class = "gfg">{{job.status.notsuitable}}</div>  -->
+              <div class = "gfg">{{job.suitable}}</div> 
+              <div id="bottomgeeks">Suitable</div>
+          </div>
+            <div class="col-sm pd-y-10 sumrms"  (click)="onDashboardSummClick($event,1234,4)">
+                <div class = "gfg">{{job.blacklisted}}</div> 
+                <div id="bottomgeeks">Blacklisted</div>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+          <h6 style="color: #0168fa">Options :</h6>
+          <div class="row">
+              <div class="col-sm-4 pd-y-10 isumrms" (click)="onOptionClick($event,1234,1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye mg-r-5" _ngcontent-xup-c47=""><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </div>
+              <div class="col-sm-4 pd-y-10 isumrms"  (click)="onOptionClick($event,1234,2)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit mg-r-5" _ngcontent-iei-c47=""><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
+              </div>
+              <div class="col-sm-4 pd-y-10 isumrms"  (click)="onOptionClick($event,1234,3)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mg-r-5" _ngcontent-qcy-c47=""><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+              </div>
+          </div>
+      </div>
+  </div><!-- row -->
+  <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+
+
+
+    </div><!-- container -->
+  </div>
+  <script>
+    feather.replace()
+  </script>

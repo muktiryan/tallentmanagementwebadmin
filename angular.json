@@ -23,10 +23,26 @@
               "src/favicon.ico",
               "src/assets"
             ],
+
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/assets/css/dashforge.css",
+              "src/assets/lib/bootstrap-tagsinput/bootstrap-tagsinput.css",
+              "src/assets/assets/css/dashforge.profile.css",
+              "src/assets/lib/ionicons/css/ionicons.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-ui-dist/jquery-ui.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/silver/theme.js",
+              "node_modules/crypto-js/crypto-js.js",
+              "src/assets/lib/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/lib/feather-icons/feather.min.js",
+              "src/assets/lib/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/assets/lib/bootstrap-tagsinput/bootstrap-tagsinput.min.js",
+              "src/assets/assets/js/dashforge.js"
+            ]
           },
           "configurations": {
             "production": {

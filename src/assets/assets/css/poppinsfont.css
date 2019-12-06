@@ -1,0 +1,13 @@
+/* poppins-regular - latin */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/poppins/Poppins-Regular.ttf'); /* IE9 Compat Modes */
+    src: local('Poppins Regular'), local('Poppins-Regular'),
+         url('../fonts/poppins/Poppins-Light.ttf') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/poppins/Poppins-Regular.ttf') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/poppins/Poppins-Regular.ttf') format('woff'), /* Modern Browsers */
+         url('../fonts/poppins/Poppins-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/poppins/Poppins-Regular.ttf') format('svg'); /* Legacy iOS */
+  }

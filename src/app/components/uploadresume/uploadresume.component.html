@@ -1,1 +1,100 @@
-<p>uploadresume works!</p>
+<div class="content content-fixed backgroundbiasa">
+  <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+    <div class="d-sm-flex align-items-center justify-content-between mg-b-10 mg-lg-b-10">
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <!-- <li class="breadcrumb-item"><a href="#">Jobs & Projects</a></li> -->
+            <li class="breadcrumb-item active" aria-current="page">Upload Resume</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div class="row row-xs">
+      <div class="col-12">
+
+        <form [formGroup]="angForm" (ngSubmit)="onClickSubmit()" class="needs-validation" novalidate>
+          <!-- <div class="card card-body align-items-start"> -->
+          <div class="row" style="border: #d1cece solid 0.05em;border-radius:3px;">
+            <div class="col-md-6" style="padding: 10px;">
+              <div class="input-group mg-y-5">
+                <span style="font-size: 11px;color:#5C73AE"><strong>Fullname</strong></span>
+              </div>
+              <input type="text" name="identifier" class="form-control" placeholder="please insert your full name"
+                formControlName="identifier">
+                <div *ngIf="submitted && f.identifier.errors" style="color: red">
+                    <div *ngIf="f.identifier.errors.required">Fullname is required</div>
+                </div>
+              <div class="input-group mg-y-5">
+                <span style="font-size: 11px;color:#5C73AE"><strong>Mobile Phone</strong></span>
+              </div>
+              <input type="number" name="mobilenumber" class="form-control" placeholder="+62 XXX XXX XXX"
+                formControlName="mobilenumber">
+                <div *ngIf="submitted && f.mobilenumber.errors" style="color: red">
+                    <div *ngIf="f.mobilenumber.errors.required">Mobile number is required</div>
+                </div>
+              <div class="input-group mg-y-5">
+                <span style="font-size: 11px;color:#5C73AE"><strong>E-Mail Address</strong></span>
+              </div>
+              <input type="mail" name="usermail" class="form-control" placeholder="email@mailserver.com"
+                formControlName="usermail">
+                <div *ngIf="submitted && f.usermail.errors" style="color: red">
+                    <div *ngIf="f.usermail.errors.required">Email is required</div>
+                    <div *ngIf="f.usermail.errors.email">Email must be a valid email address</div>
+                </div>
+              <div class="input-group mg-y-5">
+                <span style="font-size: 11px;color:#5C73AE"><strong>Suite Job Position</strong></span>
+              </div>
+              <select class="custom-select" placeholder="select item" name="jobposition" formControlName="jobposition">
+                  <option [ngValue]="null">Select Job Position</option>
+                <option *ngFor="let job of jobTitleItems" class="dropdown-item" href="javascript:void(0)" [ngValue]="job">
+                  ({{job.code}}) {{job.jobtitle}}</option>
+              </select>
+              <div *ngIf="submitted && f.jobposition.errors" style="color: red">
+                  <div *ngIf="f.jobposition.errors.required">Job applied is required</div>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px;">
+              <div class="input-group mg-y-5">
+                <span style="font-size: 11px;color:#5C73AE"><strong>Documents</strong></span>
+              </div>
+              <input type="file" formControlName="fileupload" (change)="changeDocument($event)" />
+              <!-- <input type="file" name="fileupload" id="fileupload" multiple ng2FileSelect [uploader]="uploader"
+                name="fileupload" formControlName="fileupload" /> -->
+              <!-- <div class="row d-flex pd-10 bg-gray-200" *ngFor="let item of uploader.queue" style="margin: 10px;">
+                <div class="col-sm-8">{{item.file.name}}</div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-danger">Remove</button>
+                </div>
+              </div> -->
+              <br><br>
+              <div *ngIf="validatorAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Invalid!</strong><br>Please fill in all field & upload document.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-brand-02 btn-block">Submit</button>
+              </div>
+              <br>
+              <div *ngIf="validatorSuccess" class="alert alert-success alert-dismissible fade show" role="success">
+                  <strong>Success!</strong><br>Data candidate & upload document was successfully Submited.
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </form>
+
+      </div><!-- col -->
+    </div><!-- row -->
+    <!---TABLE JOBS-->
+
+  </div><!-- container -->
+</div>
+<script>
+  feather.replace()
+</script>
