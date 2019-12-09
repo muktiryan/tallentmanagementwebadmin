@@ -18,7 +18,7 @@ export class RestconsumerService {
       'Content-Type': 'application/json'
     })
   };
-  
+
   public getCreateNewMaster() {
     return this.httpClient
       .get(this.apiURL + '/createnewmasters')
@@ -36,6 +36,7 @@ export class RestconsumerService {
         catchError(this.handleError),
       );
   }
+
   public getOpportunitiesAllDsb() {
     return this.httpClient
       .get(this.apiURL + '/opportunitiesdb')
@@ -44,10 +45,10 @@ export class RestconsumerService {
         catchError(this.handleError),
       );
   }
+
   public postAdminLogin(item) {
-   
     return this.httpClient
-      .post(this.apiURL+'/adminlogin', item, this.httpOptions)
+      .post(this.apiURL + '/adminlogin', item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -55,34 +56,28 @@ export class RestconsumerService {
   }
 
   public postOpportunities(item) {
-   
     return this.httpClient
-      .post(this.apiURL+'/opportunity', item, this.httpOptions)
+      .post(this.apiURL + '/opportunity', item, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  public postMultipartResumeApply(fileToUpload: File, extraData?:object){
+  public postMultipartResumeApply(fileToUpload: File, extraData?: object) {
     const formData: FormData = new FormData();
     formData.append('fileupload', fileToUpload, fileToUpload.name);
-
-    console.log("Extra data "+JSON.stringify(extraData))
-
-    
-
+    console.log("Extra data " + JSON.stringify(extraData))
     if (extraData) {
       // for(let key in extraData){
-          // iterate and set other form data
-          let jobPost = extraData['jobposition']
-        formData.append('fullname', extraData['identifier'])
-        formData.append('mobilenumber', extraData['mobilenumber'])
-        formData.append('usermail', extraData['usermail'])
-        formData.append('jobid', jobPost['ID'])
-        formData.append('createdby', extraData['identifier'])
+      // iterate and set other form data
+      let jobPost = extraData['jobposition']
+      formData.append('fullname', extraData['identifier'])
+      formData.append('mobilenumber', extraData['mobilenumber'])
+      formData.append('usermail', extraData['usermail'])
+      formData.append('jobid', jobPost['ID'])
+      formData.append('createdby', extraData['identifier'])
     }
-    
     return this.httpClient.post<boolean>(this.apiURL + '/uploadcvviaadmin', formData)
       .pipe(
         retry(1),

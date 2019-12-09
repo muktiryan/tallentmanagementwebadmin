@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<header class="navbar navbar-header navbar-header-fixed" style='display: flex;flex-flow: row;'>
+<header class="navbar navbar-header navbar-header-fixed" style='display: flex;flex-flow: row; background-color: white;'>
   <a href="" id="mainMenuOpen" class="burger-menu">
     <i data-feather="menu"></i>
   </a>
@@ -47,28 +47,24 @@
     </ul>
   </div><!-- navbar-menu-wrapper -->
   <div class="navbar-right" *ngIf="profileComponent.loggedin">
-
-
     <!-- dropdown -->
     <div class="dropdown dropdown-profile">
-
       <!-- <span href="https://themeforest.net/item/azia-responsive-bootstrap-4-dashboard-template/22983790" class="btn btn-buy"><i data-feather="shopping-bag"></i> <span>Buy Now</span></a> -->
-
-
       <a href="" class="dropdown-link" data-toggle="dropdown" data-display="static">
         <div class="avatar avatar-sm"><img [src]="profileComponent.avatar" class="rounded-circle" alt="">
         </div>
       </a><!-- dropdown-link -->
       <div class="dropdown-menu dropdown-menu-right tx-13">
-        <div class="avatar avatar-lg mg-b-15"><img [src]="profileComponent.avatar" class="rounded-circle"
-            alt=""></div>
+        <div class="avatar avatar-lg mg-b-15"><img [src]="profileComponent.avatar" class="rounded-circle" alt=""></div>
         <h6 class="tx-semibold mg-b-15">{{profileComponent.name}}</h6>
         <!-- <p class="mg-b-25 tx-12 tx-color-03">Administrator</p> -->
         <a href="" class="dropdown-item" routerLink="adminprofile"><i data-feather="edit-3"></i> Edit Profile</a>
-        <div class="dropdown-divider"></div>
-        <a href="" class="dropdown-item"><i data-feather="users"></i> Resource Manager</a>
-        <a href="" class="dropdown-item" routerLink="useradmin"><i data-feather="life-buoy"></i> Users Administrator</a>
-        <a href="" class="dropdown-item" routerLink="utilsettings"><i data-feather="settings"></i>Utilities Settings</a>
+        <div *ngIf="profileComponent.roleId == 1" class="dropdown-divider"></div>
+        <!-- <a href="" class="dropdown-item"><i data-feather="users"></i> Resource Manager</a> -->
+        <a *ngIf="profileComponent.roleId == 1" href="" class="dropdown-item" routerLink="useradmin"><i
+            data-feather="life-buoy"></i> Users Administrator</a>
+        <a *ngIf="profileComponent.roleId == 1" href="" class="dropdown-item" routerLink="utilsettings"><i
+            data-feather="settings"></i>Utilities Settings</a>
         <div class="dropdown-divider"></div>
         <a href="javascript:void(0)" class="dropdown-item" (click)="openDialog()"><i data-feather="log-out"></i>Sign
           Out</a>

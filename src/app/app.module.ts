@@ -25,7 +25,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgxCurrencyModule } from "ngx-currency";
 import { AngularWebStorageModule } from 'angular-web-storage';
-import {EncrDecrServiceService} from './services/encr-decr-service.service';
+import { EncrDecrServiceService } from './services/encr-decr-service.service';
 
 @NgModule({
   declarations: [
