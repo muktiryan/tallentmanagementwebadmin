@@ -18,7 +18,7 @@ export const environment = {
 export const env = {
     production: false,
     socketUrl: 'http://localhost:4200/',
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'http://localhost:13000',
     reportUrl: 'http://localhost:8080/report/',
     googleRecaptchaSiteKey: '6LekmWQUAAAAAAgw7fPFgjvjuITR4Jhi0TrlQu5U'
 };

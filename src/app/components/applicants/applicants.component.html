@@ -10,7 +10,7 @@
         </nav>
       </div>
     </div>
-    <div class="row row-xs">
+    <div *ngIf="roleId != 3" class="row row-xs">
       <div class="col-12">
         <div class="card card-body align-items-start">
           <div class="d-md-flex justify-content-between">
@@ -20,15 +20,15 @@
                   <li *ngIf="roleId != 3" class="nav-item active">
                     <a href="#" class="nav-link active"> Unprocessed ({{sortaction.up}})</a>
                   </li>
-                  <li *ngIf="roleId == 3" class="nav-item">
+                  <!-- <li *ngIf="roleId == 3" class="nav-item">
                     <a href="#" class="nav-link"> Shortlist ({{sortaction.sl}})</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="#" class="nav-link"> Interview ({{sortaction.in}})</a>
                   </li>
-                  <li *ngIf="roleId == 3" class="nav-item">
+                  <!-- <li *ngIf="roleId == 3" class="nav-item">
                     <a href="#" class="nav-link"> Suitable ({{sortaction.st}})</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="#" class="nav-link"> Not Suitable ({{sortaction.ns}})</a>
                   </li>
@@ -83,16 +83,15 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="#">Applicant Name</a>
-            <a class="dropdown-item" href="#">Last Update CV</a>
-            <a class="dropdown-item" href="#">Last Active</a>
+            <a class="dropdown-item" href="#">Opportunity due date</a>
+            <!-- <a class="dropdown-item" href="#">Last Active</a> -->
           </div>
         </div>
       </div>
     </div>
     <div class="row row-xs">
-      <div class="col-md-3">
+      <div *ngIf="roleId != 3" class="col-md-3">
         <div class="card card-body">
-
           <strong style="color: #5C73AE;">Filter Applications</strong>
           <p></p>
           <div data-label="Example" class="df-example demo-forms">
@@ -135,25 +134,23 @@
               <option *ngFor="let location of locationitems" value="location.value">{{location.display}}</option>
             </select>
           </div>
-
         </div>
       </div>
-      <div class="col-md-9">
+      <div [ngClass]="{'col-md-9': roleId != 3, 'col-md-12': roleId == 3}">
         <p style="margin-top: 0.7rem;margin-bottom:0.05rem;margin-left:20px;color:rgb(1, 104, 250)">{{dataMessage}}</p>
         <div class="row mg-t-25 mg-sm-2 justify-content-between mg-b-5 mg-lg-b-5 pd-y-10"
           style="border: 1px solid rgba(72, 94, 144, 0.16); border-radius: 4px;" *ngFor="let candidate of pageOfItems">
           <div class="col-sm-8">
             <!-- <h5 style="color: #0168fa" class="thinkisclicked">Job Title</h5> -->
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="idx{{candidate.id}}"
-                [(ngModel)]="candidate.isSelected" value="{{candidate.id}}">
+              <input type="checkbox" class="custom-control-input" id="idx{{candidate.correlid}}"
+                [(ngModel)]="candidate.isSelected" value="{{candidate.correlid}}">
               <label class="custom-control-label thinkisclicked" style="color: #5C73AE;font-size:16px;font-weight:600"
-                for="idx{{candidate.id}}">{{candidate.fullname}}</label>
+                for="idx{{candidate.correlid}}">{{candidate.candidatename}}</label>
             </div>
-            <p class="ppadding-b-0" style="padding-top:7px;font-size:12px;font-weight:300">{{candidate.applyfor}}</p>
-
-            <p style="padding-top:5px;font-size:12px;font-weight:500;color:green">Availibility : Open for Job
-              Opportunity</p>
+            <p class="ppadding-b-0" style="padding-top:7px;font-size:12px;font-weight:300">{{candidate.jobtitle}}</p>
+            <p style="padding-top:5px;font-size:12px;font-weight:500;color:green">
+              Availibility : Open for Job Opportunity</p>
           </div>
 
           <div class="col-sm-4">
@@ -162,25 +159,25 @@
                 Applied
               </div>
               <div class="col-sm-6" style="text-align:right;font-size:11px;font-weight:300">
-                {{candidate.applieddate | date :  "d MMM y"}}
+                {{candidate.createdat | date :  "d MMM y"}}
               </div>
             </div>
             <div class="row">
               <div class="col-sm-7" style="color: #5C73AE;font-size:11px;font-weight:600">
-                Last update CV
+                Opp. due date
               </div>
               <div class="col-sm-5" style="text-align:right;font-size:11px;font-weight:300">
-                {{candidate.lastupdate | date :  "d MMM y"}}
+                {{candidate.deadLineDate | date :  "d MMM y"}}
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-sm-6" style="color: #5C73AE;font-size:11px;font-weight:600">
                 Last active
               </div>
               <div class="col-sm-6" style="text-align:right;font-size:11px;font-weight:300">
                 {{candidate.lastactive | date :  "d MMM y"}}
               </div>
-            </div>
+            </div> -->
             <div class="row">
               <div class="col-sm-3 pd-y-10 isumrms" (click)="onOptionClick($event,1234,1)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -188,7 +185,11 @@
                   style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
                   preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                   <g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21l-7-5l-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                    <path d="M16 13H8" />
+                    <path d="M16 17H8" />
+                    <path d="M10 9H8" />
                   </g>
                   <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" />
                 </svg>
@@ -199,9 +200,8 @@
                   style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
                   preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                   <g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9V2h12v7" />
-                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                    <path d="M6 14h12v8H6z" />
+                    <path
+                      d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
                   </g>
                   <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" />
                 </svg>
@@ -212,8 +212,7 @@
                   style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
                   preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                   <g fill="none" stroke="#5C73AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <path d="M22 6l-10 7L2 6" />
+                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
                   </g>
                 </svg>
               </div>

@@ -12,6 +12,7 @@ import { env } from './services/config.service';
 export class AppComponent {
   items = ['Pizza', 'Pasta', 'Parmesan'];
   title = 'rmsadmin01';
+  sortaction = { up: 0, sl: 0, in: 0, ns: 0, bl: 0, st: 0 }
   userInfoTmp: string;
   public userInfo;
   public profileComponent: any = {}

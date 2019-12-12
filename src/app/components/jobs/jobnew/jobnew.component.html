@@ -68,7 +68,7 @@
                     (click)="onLevelClick(industriy, 2)">{{industriy.display}}</a>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Industry" formControlName="jobindustry"
+              <input type="text" class="form-control" placeholder="Industry" formControlName="industry"
                 aria-label="Text input with dropdown button">
 
               <!-- <div class="input-group-prepend">
@@ -81,8 +81,8 @@
                     </div>
                     <input type="text" class="form-control"  placeholder="Industry" aria-label="Text input with dropdown button"> -->
             </div>
-            <div *ngIf="submitted && f.jobindustry.errors" style="color: red">
-              <div *ngIf="f.jobindustry.errors.required">Industry is required</div>
+            <div *ngIf="submitted && f.industry.errors" style="color: red">
+              <div *ngIf="f.industry.errors.required">Industry is required</div>
             </div>
             <div class="input-group mg-y-5">
               <div class="input-group-prepend">
@@ -93,11 +93,11 @@
                     (click)="onLevelClick(emptype, 3)">{{emptype.display}}</a>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Employee Type" formControlName="jobemployeetype"
+              <input type="text" class="form-control" placeholder="Employee Type" formControlName="jobtype"
                 aria-label="Text input with dropdown button">
             </div>
-            <div *ngIf="submitted && f.jobemployeetype.errors" style="color: red">
-              <div *ngIf="f.jobemployeetype.errors.required">Employee Type is required</div>
+            <div *ngIf="submitted && f.jobtype.errors" style="color: red">
+              <div *ngIf="f.jobtype.errors.required">Employee Type is required</div>
             </div>
             <div class="input-group mg-y-5">
               <div class="input-group-prepend">
@@ -108,11 +108,11 @@
                     (click)="onLevelClick(location, 4)">{{location.display}}</a>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Location" formControlName="joblocation"
+              <input type="text" class="form-control" placeholder="Location" formControlName="location"
                 aria-label="Text input with dropdown button">
             </div>
-            <div *ngIf="submitted && f.joblocation.errors" style="color: red">
-              <div *ngIf="f.joblocation.errors.required">Location is required</div>
+            <div *ngIf="submitted && f.location.errors" style="color: red">
+              <div *ngIf="f.location.errors.required">Location is required</div>
             </div>
             <div class="input-group mg-y-5">
               <div class="input-group-prepend">
@@ -123,11 +123,11 @@
                     (click)="onLevelClick(education, 5)">{{education.display}}</a>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Education" formControlName="jobeducation"
+              <input type="text" class="form-control" placeholder="Education" formControlName="education"
                 aria-label="Text input with dropdown button">
             </div>
-            <div *ngIf="submitted && f.joblocation.errors" style="color: red">
-              <div *ngIf="f.joblocation.errors.required">Education is required</div>
+            <div *ngIf="submitted && f.education.errors" style="color: red">
+              <div *ngIf="f.education.errors.required">Education is required</div>
             </div>
             <div class="input-group mg-y-5">
               <div class="input-group-prepend">
@@ -138,17 +138,17 @@
                     (click)="onLevelClick(experience, 6)">{{experience.display}}</a>
                 </div>
               </div>
-              <input type="text" class="form-control" placeholder="Experiance" formControlName="jobexperiences"
+              <input type="text" class="form-control" placeholder="Experiance" formControlName="yearxpMin"
                 aria-label="Text input with dropdown button">
             </div>
-            <div *ngIf="submitted && f.jobexperiences.errors" style="color: red">
-              <div *ngIf="f.jobexperiences.errors.required">Experience is required</div>
+            <div *ngIf="submitted && f.yearxpMin.errors" style="color: red">
+              <div *ngIf="f.yearxpMin.errors.required">Experience is required</div>
             </div>
             <div class="input-group mg-y-5">
               <div class="input-group-prepend">
                 <span class="input-group-text">Sallary (Monthly)</span>
               </div>
-              <input type="text" aria-label="First name" class="form-control" formControlName="jobminsallary"
+              <input type="text" aria-label="First name" class="form-control" formControlName="salaryMin"
                 placeholder="0.0" currencyMask [options]="NGXCurrencyConfig">
               <div class="input-group-append">
                 <span class="input-group-text">Min</span>
@@ -159,7 +159,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Sallary (Monthly)</span>
               </div>
-              <input type="text" aria-label="First name" class="form-control" formControlName="jobmaxsallary"
+              <input type="text" aria-label="First name" class="form-control" formControlName="salaryMax"
                 placeholder="0.0" currencyMask [options]="NGXCurrencyConfig">
               <div class="input-group-append">
                 <span class="input-group-text">Max</span>
@@ -169,14 +169,15 @@
               <span class="form">Skills*</span>
             </div>
 
-            <tag-input theme='minimal' formControlName="jobskill" placeholder="Skills">
+            <tag-input theme='minimal' formControlName="skill" placeholder="Skills">
               <tag-input-dropdown [autocompleteItems]="skills" [showDropdownIfEmpty]="true" [appendToBody]="false"
                 [dynamicUpdate]="false">
               </tag-input-dropdown>
             </tag-input>
-            <div *ngIf="submitted && f.jobskill.errors" style="color: red">
-              <div *ngIf="f.jobskill.errors.required">Skill is required</div>
+            <div *ngIf="submitted && f.skill.errors" style="color: red">
+              <div *ngIf="f.skill.errors.required">Skill is required</div>
             </div>
+
             <div class="input-group mg-y-5">
               <span class="form">Deadline Of Application*</span>
             </div>
@@ -184,12 +185,12 @@
               <div class="wd-md-50p">
                 <!-- <input type="text" class="form-control" formControlName="jobdeadline" placeholder="Pick Date" id="datepicker4"> -->
                 <input type="text" #dateFromDp="dpDayPicker" class="form-control" [dpDayPicker]="dayPickerConfig"
-                  formControlName="jobdeadline" [mode]="'day'" [theme]="'dp-material'" (onChange)="date = $event"
+                  formControlName="deadLineDate" [mode]="'day'" [theme]="'dp-material'" (onChange)="date = $event"
                   placeholder="Pick Date" />
               </div>
             </div>
-            <div *ngIf="submitted && f.jobdeadline.errors" style="color: red">
-              <div *ngIf="f.jobdeadline.errors.required">Deadline is required</div>
+            <div *ngIf="submitted && f.deadLineDate.errors" style="color: red">
+              <div *ngIf="f.deadLineDate.errors.required">Deadline is required</div>
             </div>
           </div>
         </div>
@@ -201,10 +202,10 @@
             <div class="input-group mg-y-5">
               <!-- <textarea class="form-control" rows="3" placeholder="Write job Qualifications"></textarea> -->
               <!-- <textarea id="mymce1" formControlName="jobqualification"></textarea> -->
-              <tinymce formControlName="jobqualification" [config]="config"></tinymce>
+              <tinymce formControlName="qualific" [config]="config"></tinymce>
             </div>
-            <div *ngIf="submitted && f.jobqualification.errors" style="color: red">
-              <div *ngIf="f.jobqualification.errors.required">Qualification is required</div>
+            <div *ngIf="submitted && f.qualific.errors" style="color: red">
+              <div *ngIf="f.qualific.errors.required">Qualification is required</div>
             </div>
             <div class="input-group mg-y-5">
               <span class="form">Write Jobs Description *</span>
@@ -212,10 +213,10 @@
             <div class="input-group mg-y-5">
               <!-- <textarea class="form-control" rows="3" placeholder="Write job Description"></textarea> -->
               <!-- <textarea id="mymce2" name="jobdescription" formControlName="jobdescription"></textarea> -->
-              <tinymce formControlName="jobdescription" [config]="config"></tinymce>
+              <tinymce formControlName="jobdesc" [config]="config"></tinymce>
             </div>
-            <div *ngIf="submitted && f.jobdescription.errors" style="color: red">
-              <div *ngIf="f.jobdescription.errors.required">Descriptions is required</div>
+            <div *ngIf="submitted && f.jobdesc.errors" style="color: red">
+              <div *ngIf="f.jobdesc.errors.required">Descriptions is required</div>
             </div>
           </div>
         </div>
@@ -224,16 +225,19 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4 inline">
           <!-- Alert jika data belum diisi -->
-          <div *ngIf="validatorAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+          <!-- <div *ngIf="validatorAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Invalid!</strong><br>Please fill in all field & upload document.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-          </div>
+          </div> -->
           <!--  -->
           <div class="row pd-t-20">
             <div class="col-sm-6 pd-b-10">
-              <button type="submit" class="btn btn-brand-02 btn-block">Post Job</button>
+              <button type="submit" class="btn btn-brand-02 btn-block" data-toggle="modal"
+                data-target="#responsefromrest">
+                Post Job
+              </button>
             </div>
             <div class="col-sm-6 pd-b-10">
               <button type="button" class="btn  btn-block bg-danger" style="color: seashell">Cancel Post</button>
@@ -244,4 +248,34 @@
       </div>
     </form>
   </div><!-- container -->
+</div>
+
+<!-- Modal Response From Rest API-->
+<div class="modal fade" id="responsefromrest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="validatorAlert === false" class="modal-title" id="exampleModalLabel">{{responseStatus}}</h5>
+        <h5 *ngIf="validatorAlert" class="modal-title" id="exampleModalLabel">Invalid!</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div *ngIf="validatorAlert === false" class="modal-body">
+        {{responseSeverity}}
+        <br>
+        {{responseMessages}}
+      </div>
+      <div *ngIf="validatorAlert" class="modal-body">
+          Please fill in all field & upload document.
+      </div>
+      <div *ngIf="validatorAlert === false" class="modal-footer">
+        <!-- <button type="button" class="bt/n btn-secondary" data-dismiss="modal">Cancel</button> -->
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="backtoJobPost()">
+          OK. Back to job board
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

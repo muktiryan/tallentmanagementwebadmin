@@ -64,6 +64,15 @@ export class RestconsumerService {
       );
   }
 
+  public candidateOpportunitiesProcess(id) {
+    return this.httpClient
+      .get(this.apiURL + '/candidateopportunities/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
   public postMultipartResumeApply(fileToUpload: File, extraData?: object) {
     const formData: FormData = new FormData();
     formData.append('fileupload', fileToUpload, fileToUpload.name);

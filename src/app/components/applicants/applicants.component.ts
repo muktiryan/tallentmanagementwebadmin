@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
+import { RestconsumerService } from 'src/app/services/restconsumer.service';
 
 @Component({
   selector: 'app-applicants',
@@ -66,18 +67,32 @@ export class ApplicantsComponent implements OnInit {
     { id: 11, fullname: 'Rahmat Kartolo', applyfor: 'Java Developer', applieddate: '2019-10-18', lastupdate: '2019-09-18', lastactive: null, isSelected: false },
   ];
 
-  constructor(private appComponent: AppComponent) {
+  constructor(private appComponent: AppComponent, private _restclient: RestconsumerService) {
     this.masterSelected = false;
   }
 
   ngOnInit() {
     this.roleId = this.appComponent.profileComponent.roleId
     console.log(this.roleId)
-    this.pageOfItems = this.fakeData;
-    this.items = this.fakeData;
+    this.restCandidateProcess();
+    // this.pageOfItems = this.fakeData;
+    // this.items = this.fakeData;
     if (this.items.length > 0) {
       this.dataMessage = "Showing 10 jobs out of " + this.items.length;
     }
+  }
+
+  restCandidateProcess() {
+    this._restclient.candidateOpportunitiesProcess(1)
+      .subscribe((response: { Data }) => {
+        // console.log(response.Data)
+        let addSelectedElement = response.Data.map((obj: any) => Object.assign(obj, { isSelected: false }));    // nambah element isSelected buat check-box
+        console.log(addSelectedElement);
+        this.pageOfItems = addSelectedElement;
+        this.items = addSelectedElement;
+      }, error => {
+        console.error(error);
+      })
   }
 
   onChangePage(pageOfItems: Array<any>) {

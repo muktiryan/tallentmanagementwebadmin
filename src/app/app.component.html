@@ -15,7 +15,8 @@
         <i data-feather="x"></i>
       </a>
     </div><!-- navbar-menu-header -->
-    <ul class="nav navbar-menu">
+    <!-- Jika role bukan interviewer -->
+    <ul *ngIf="profileComponent.roleId != 3" class="nav navbar-menu">
       <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Main Navigation</li>
       <li id="jobprojects" class="nav-item with-sub" routerLinkActive="active">
         <a href="" class="nav-link">
@@ -43,8 +44,23 @@
           <i data-feather="box"></i> Upload Resume
         </a>
       </li>
-
     </ul>
+
+    <!-- Jika role interviewer -->
+    <ul *ngIf="profileComponent.roleId == 3" class="nav navbar-menu">
+      <li class="nav-label pd-l-20 pd-lg-l-25 d-lg-none">Main Navigation</li>
+
+      <li class="nav-item" routerLinkActive="active">
+        <a href="#" class="nav-link" routerLink="applicants"> Shortlist ({{sortaction.sl}})</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a href="#" class="nav-link" routerLink="uploadresume"> Suitable ({{sortaction.st}})</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a href="#" class="nav-link" routerLink="uploadresume"> Blacklist ({{sortaction.bl}})</a>
+      </li>
+    </ul>
+
   </div><!-- navbar-menu-wrapper -->
   <div class="navbar-right" *ngIf="profileComponent.loggedin">
     <!-- dropdown -->

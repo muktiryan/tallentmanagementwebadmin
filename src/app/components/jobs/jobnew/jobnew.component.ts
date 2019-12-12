@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestconsumerService } from 'src/app/services/restconsumer.service';
 import { DatePickerComponent, DatePickerDirective } from 'ng2-date-picker';
+import { Router } from '@angular/router';
 
 import * as $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.js';
@@ -30,13 +31,17 @@ export class JobnewComponent implements OnInit {
   private validatorAlert: boolean = false;
   private jobQ: any;
   private NGXCurrencyConfig: any = { align: 'left', prefix: '', allowNegative: false, thousands: ',', decimal: '.', precision: '0' };
+  private dayPickerConfig: any = { "format": "YYYY-MM-DD" };
+  private responseStatus: any;
+  private responseSeverity: any;
+  private responseMessages: any;
 
   @ViewChild('dayPicker', { static: false }) datePicker: DatePickerComponent;
   open() { this.datePicker.api.open(); }
   close() { this.datePicker.api.close(); }
   @ViewChild("dateFromDp", { static: false }) public dateFromDp: DatePickerComponent;
 
-  constructor(private fb: FormBuilder, private _restclient: RestconsumerService) { }
+  constructor(private fb: FormBuilder, private _restclient: RestconsumerService, private router: Router) { }
 
   ngOnInit() {
     tinymce.init(
@@ -77,7 +82,7 @@ export class JobnewComponent implements OnInit {
         // console log keren yang gua bikin :D
         // console.log([...new Set(response.Data.map(x => x.category))])
         this.emptypeitems = response.Data.filter(x => x.category === "emptype");
-        this.skills = response.Data.filter(x => x.category === "skills");
+        this.skills = response.Data.filter(x => x.category === "skills").map(skill => skill.display);
         this.joblevelitems = response.Data.filter(x => x.category === "joblevel");
         this.industriyitems = response.Data.filter(x => x.category === "industry");
         this.experienceitems = response.Data.filter(x => x.category === "experience");
@@ -95,40 +100,59 @@ export class JobnewComponent implements OnInit {
         jobtitle: ['', Validators.required],
         joblevel: ['', Validators.required],
         joblevelid: [],
-        jobindustry: ['', Validators.required],
+        industry: ['', Validators.required],
         jobindustryid: [],
-        jobskill: [[], Validators.required],
-        jobqualification: ['', Validators.required],
-        jobemployeetype: ['', Validators.required],
-        joblocation: ['', Validators.required],
-        jobeducation: ['', Validators.required],
-        jobexperiences: ['', Validators.required],
-        jobminsallary: [],
-        jobmaxsallary: [],
-        jobdeadline: ['', Validators.required],
-        jobdescription: ['', Validators.required],
+        skill: [[], Validators.required],
+        qualific: ['', Validators.required],
+        jobtype: ['', Validators.required],
+        location: ['', Validators.required],
+        education: ['', Validators.required],
+        yearxpMin: ['', Validators.required],
+        salaryMin: [],
+        salaryMax: [],
+        deadLineDate: ['', Validators.required],
+        jobdesc: ['', Validators.required],
       }
     );
   }
 
   onClickSubmit() {
     // alert('Your Email is : ' + JSON.stringify(this.angForm.value));
-    // console.log(this.jobQ)
-    // this.angForm.patchValue({ jobdeadline: theDate });
-    // this.angForm.patchValue({ jobqualification: this.jobQ })
+    // this.angForm.patchValue({ skill: this.angForm.value.skill[0].display });
     let payload = this.angForm.value;
-    this.submitted = true;
     if (this.angForm.invalid) {
       // bikin alert jika ada yang belum terisi
       this.validatorAlert = true
-      setTimeout(() => {
-        this.validatorAlert = false
-      }, 5000);
-      console.log(payload)
+      // setTimeout(() => {
+      //   this.validatorAlert = false
+      // }, 5000);
+      // console.log(payload)
       // 
     } else {
-      console.log('SUCCESS!! :-)\n\n' + JSON.parse(payload));
+      // console.log(JSON.stringify(payload))
+      // console.log('SUCCESS!! :-)\n\n' + JSON.parse(payload));
+      this.validatorAlert = false
+      payload.skill = this.angForm.value.skill.map(skill => skill.value).join(', ');
+      payload.deadLineDate = new Date(this.angForm.value.deadLineDate).toISOString();
+      payload.yearxpMin = this.angForm.value.yearxpMin === "Newbie" ? 12 : this.angForm.value.yearxpMin === "Intermediate" ? 24 : 36;
+      this.submitted = true;
+      this._restclient.postOpportunities(JSON.stringify(payload))
+        .subscribe((data: any) => {
+          console.log(data)
+          this.responseStatus = data.Status;
+          this.responseMessages = data.Meta.message;
+          this.responseSeverity = data.Meta.severity;
+        }, error => {
+          console.error(error);
+          this.responseStatus = error.statusText;
+          this.responseMessages = error.error.Meta.message;
+          this.responseSeverity = error.status;
+        })
     }
+  }
+
+  backtoJobPost() {
+    this.router.navigate(['/jobs_project/post']);
   }
 
   onLevelClick(code, fld) {
@@ -139,27 +163,23 @@ export class JobnewComponent implements OnInit {
         break;
       }
       case 2: {
-        this.angForm.patchValue({ jobindustry: this.displayString, });
-        break;
-      }
-      case 2: {
-        this.angForm.patchValue({ jobindustry: this.displayString, });
+        this.angForm.patchValue({ industry: this.displayString, });
         break;
       }
       case 3: {
-        this.angForm.patchValue({ jobemployeetype: this.displayString, });
+        this.angForm.patchValue({ jobtype: this.displayString, });
         break;
       }
       case 4: {
-        this.angForm.patchValue({ joblocation: this.displayString, });
+        this.angForm.patchValue({ location: this.displayString, });
         break;
       }
       case 5: {
-        this.angForm.patchValue({ jobeducation: this.displayString, });
+        this.angForm.patchValue({ education: this.displayString, });
         break;
       }
       case 6: {
-        this.angForm.patchValue({ jobexperiences: this.displayString, });
+        this.angForm.patchValue({ yearxpMin: this.displayString, });
         break;
       }
       default: {
