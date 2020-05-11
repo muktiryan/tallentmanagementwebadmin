@@ -31,7 +31,7 @@
     "ngx-currency": "^2.0.0",
     "ngx-tinymce": "^7.0.0",
     "rxjs": "~6.4.0",
-    "tinymce": "^5.1.1",
+    "tinymce": "^5.2.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
